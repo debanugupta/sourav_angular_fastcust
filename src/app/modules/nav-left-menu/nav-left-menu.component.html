@@ -1,0 +1,28 @@
+<mat-toolbar class="horizental-menu" *ngIf="loggedIn()">
+  <mat-toolbar-row>
+    <button type="button"  aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span>&nbsp;&nbsp;
+     <a class="navbar-brand"  [routerLink]="['/home']" > 
+        <img   src="./assets/logo.png">
+        <small >FastCust </small> </a>
+    </span>
+    <small > Welcome {{ authService.decodedToken?.unique_name | titlecase}}</small>
+    <!-- &nbsp;<a  class="navbar-brand" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a> -->
+    <button type="button"  (click)="logout()" class="btn btn-link"><i class="fa fa-sign-out"></i> Logout</button>  
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container  style="height: 100%;" >
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list routerLinkActive="active" class="vertical-menu" *ngIf="loggedIn()"> 
+      <a mat-list-item routerLink='customers'><i class="fas fa-building"></i>&nbsp;Customers</a>
+      <!-- <a mat-list-item routerLink='/register' *ngIf="!loggedIn()"><img src="./assets/register.png">Register</a> -->
+      <!-- <a mat-list-item routerLink='/login' *ngIf="!loggedIn()" ><img src="./assets/login2.png">Login</a> -->
+      <!-- <a mat-list-item (click)="logout()" *ngIf="loggedIn()"><img src="./assets/logout.png">Log Out</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

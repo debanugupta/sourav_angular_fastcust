@@ -1,0 +1,140 @@
+<div class="container" >
+  <div *ngIf="isLoading">
+    <mat-progress-bar 
+        mode="Indeterminate">
+    </mat-progress-bar>
+  </div>
+  <div class="row">
+    <div class="col-sm-11">
+      <H2>Customer Detail</H2>
+    </div>
+    <div class="col-sm-1">
+      <button type="button" (click)="editCustomer()" class="btn btn-primary ">Edit</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Business Name:</h4>
+       {{customer?.businessName}} 
+    </div>
+    <div class="col-sm-6">
+      <h4>Business Number:</h4>
+       {{customer?.businessNumber}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>First Name:</h4>
+       {{customer?.firstName}} 
+    </div>
+    <div class="col-sm-6">
+      <h4>Surname:</h4>
+       {{customer?.lastName}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Phone 1:</h4>
+       {{customer?.phone1}} 
+    </div>
+    <div class="col-sm-6">
+      <h4>Phone 2:</h4>
+       {{customer?.phone2}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Mobile 1:</h4>
+       {{customer?.primaryMobile}} 
+    </div>
+    <div class="col-sm-6">
+      <h4>Mobile 2:</h4>
+       {{customer?.secondaryMobile}}
+    </div>
+  </div>
+  <div class="row">
+    
+    <div class="col-sm-6">
+      <h4>Email:</h4>
+       {{customer?.email}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-11">
+      <H2>Address:</H2>
+    </div>
+    <div class="col-sm-1">
+      <button type="button"  mat-flat-button (click)="addCustomerAddress()"   
+        class="btn btn-primary "  > Add </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div fxLayout='row' fxLayoutWrap >
+        <div fxFlex="20" class="example-card" 
+        *ngFor="let customerAddress of customerAddresses | orderBy: 'isPrimaryAddress' : true ">
+          <mat-card  class="chart-cards mt-20"  fxLayout="column" 
+          
+          >
+            <mat-card-title-group>
+              <span>
+                
+                  {{customerAddress.address1}}
+                  {{customerAddress.address2}}
+                  {{customerAddress.city}}
+                  {{customerAddress.county}}
+                  {{customerAddress.postCode}}
+                  
+              </span>
+              <span class="fill-remaining-space"></span>
+              <span *ngIf="customerAddress.isPrimaryAddress" style="color: green;"><b>PRIMARY &nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+              <button type="button" *ngIf="!customerAddress.isPrimaryAddress" (click)="updateCustomerAddressPrimary(customerAddress)" class="btn btn-primary">Set Primary</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span><a mat-mini-fab color="blue" (click)="editCustomerAddress(customerAddress.id)" ><i class="fas fa-angle-right"></i></a></span>
+            </mat-card-title-group>
+
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-sm-11">
+      <H2>Customer Activities:</H2>
+    </div>
+    <div class="col-sm-1">
+      <button type="button"  mat-flat-button (click)="addCustomerAddress()"   
+        class="btn btn-primary "  > Add </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div fxLayout='row' fxLayoutWrap >
+        <div fxFlex="20" class="example-card" 
+        *ngFor="let customerActivity of customerActivities">
+          <mat-card  class="chart-cards mt-20"  fxLayout="column" 
+          
+          >
+            <mat-card-title-group>
+              <span>
+                
+                  {{customerActivity.}}
+                  {{customerAddress.address2}}
+                  {{customerAddress.city}}
+                  {{customerAddress.county}}
+                  {{customerAddress.postCode}}
+                  
+              </span>
+              <span class="fill-remaining-space"></span>
+              <span *ngIf="customerAddress.isPrimaryAddress" style="color: green;"><b>PRIMARY &nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+              <button type="button" *ngIf="!customerAddress.isPrimaryAddress" (click)="updateCustomerAddressPrimary(customerAddress)" class="btn btn-primary">Set Primary</button>&nbsp;&nbsp;&nbsp;&nbsp;
+              <span><a mat-mini-fab color="blue" (click)="editCustomerAddress(customerAddress.id)" ><i class="fas fa-angle-right"></i></a></span>
+            </mat-card-title-group>
+
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+          

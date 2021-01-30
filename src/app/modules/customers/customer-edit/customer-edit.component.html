@@ -1,0 +1,91 @@
+  <div class="col-sm-6" *ngIf="customer">
+    <div *ngIf="isLoading">
+      <mat-progress-bar 
+          mode="Indeterminate">
+      </mat-progress-bar>
+    </div>
+    <H2>Customer {{ mode }}</H2>
+    <form #editForm="ngForm" id="editForm" (ngSubmit)="save()" >
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <h4>First Name *</h4>
+          <input name="firstName"  class="form-control" 
+          [(ngModel)]="customer.firstName" required />
+        </div>
+        <div class="form-group col-sm-6">
+          <h4>Last Name *</h4>
+          <input name="lastName" class="form-control" 
+            [(ngModel)]="customer.lastName" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <h4>Business Name</h4>
+          <input name="businessName" class="form-control" 
+            [(ngModel)]="customer.businessName"/>
+        </div>
+        <div class="form-group col-sm-6">
+          <h4>Business Number</h4>
+          <input name="businessNumber" class="form-control" 
+            [(ngModel)]="customer.businessNumber" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <h4>Phone 1 *</h4>
+          <input name="phone1" class="form-control" 
+            [(ngModel)]="customer.phone1" required />
+        </div>
+        <div class="form-group col-sm-6">
+          <h4>Phone 2</h4>
+          <input name="phone2" class="form-control" 
+            [(ngModel)]="customer.phone2" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <h4>Primary Mobile *</h4>
+          <input name="primaryMobile" class="form-control" 
+            [(ngModel)]="customer.primaryMobile" required />
+        </div>
+        <div class="form-group col-sm-6">
+          <h4>Secondary Mobile</h4>
+          <input name="secondaryMobile" class="form-control" 
+            [(ngModel)]="customer.secondaryMobile"  />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <h4>Email *</h4>
+          <input name="email" class="form-control" 
+            [(ngModel)]="customer.email" required />
+        </div>
+        <div class="form-group col-sm-6">
+          <h4>Website</h4>
+          <input name="website" class="form-control" 
+            [(ngModel)]="customer.website" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-12">
+          <h4>Notes</h4>
+          <input class="form-control" name="notes" 
+            [(ngModel)]="customer.notes"/>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-sm-4">
+          <button [disabled]="!editForm.dirty || !editForm.valid" form="editForm" type="submit" class="btn btn-primary btn-block">Save</button>
+        </div>
+        <div class="form-group col-sm-4">
+          <button class="btn btn-secondary btn-block" (click)="cancel()" type="button" >Cancel</button>
+        </div>
+      </div>
+    </form>
+    <div style="color: red;">
+      <b>{{ errorMessages }} </b>
+    </div>
+    
+  </div>
+

@@ -1,0 +1,66 @@
+<div class="container">
+  <div *ngIf="isLoading">
+    <mat-progress-bar 
+        mode="Indeterminate">
+    </mat-progress-bar>
+  </div>
+  <form #form="ngForm" autocomplete="off" >
+    <div class="form-row">
+      <div class="form-group col-md-11">
+        <H2>Customer List</H2>
+      </div>
+      <div class="form-group col-md-1">
+        <button  mat-flat-button   class="btn btn-primary" (click)="add()" > Add </button>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5">
+        <div class="input-group">
+          <input type="text" name="phone"  [(ngModel)]="phone" class="form-control"
+            placeholder="Enter Phone No"  >
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <div class="input-group">
+          <input type="text" name="name"  [(ngModel)]="name" class="form-control" 
+          placeholder="Enter Name">
+        </div>
+      </div>
+      <div class="form-group col-md-1">
+        <div class="input-group">
+          <button  mat-flat-button   class="btn btn-primary " [disabled]="form.invalid" 
+          (click)="search(name,phone)" >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container">
+  
+  <div fxLayout='row' fxLayoutWrap class="cards">
+    <div fxFlex="20" class="example-card" *ngFor="let customer of customers ">
+      <mat-card  class="chart-cards mt-20"  fxLayout="column" 
+      (click)="customerClicked(customer)">
+        <mat-card-title-group>
+          <span><b>{{customer.name}}</b></span>
+          <span class="fill-remaining-space"></span>
+          <!-- <i class="fas fa-angle-right"></i> -->
+          <span><a mat-mini-fab color="blue" ><i class="fas fa-angle-right"></i></a></span>
+        </mat-card-title-group>
+        <mat-card-content >
+          <p>
+            {{customer.phone}},&nbsp;{{customer.mobile}}
+          </p>
+          <p>
+            {{customer.email}}
+          </p>
+          <p>
+            {{customer.primaryAddress}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

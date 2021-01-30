@@ -1,0 +1,56 @@
+<div class="col-sm-6" *ngIf="customerAddress">
+  <div *ngIf="isLoading">
+    <mat-progress-bar 
+        mode="Indeterminate">
+    </mat-progress-bar>
+  </div>
+  <H2>Customer Address {{ mode }}</H2>
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="save()" >
+    <div class="form-row">
+      <div class="form-group col-sm-6">
+        <h4>Name *</h4>
+        <input name="name"  class="form-control" 
+        [(ngModel)]="customerAddress.name" required />
+      </div>
+      
+    </div>
+    <div class="form-row">
+      <div class="form-group col-sm-6">
+        <h4>Address1 *</h4>
+        <input name="address1"  class="form-control" 
+        [(ngModel)]="customerAddress.address1" required />
+      </div>
+      <div class="form-group col-sm-6">
+        <h4>Address2 *</h4>
+        <input name="address2" class="form-control" 
+          [(ngModel)]="customerAddress.address2" required />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-sm-6">
+        <h4>City *</h4>
+        <input name="city" class="form-control" 
+          [(ngModel)]="customerAddress.city" required/>
+      </div>
+      <div class="form-group col-sm-6">
+        <h4>PostCode *</h4>
+        <input name="postCode" class="form-control" 
+          [(ngModel)]="customerAddress.postCode" required />
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-sm-4">
+        <button [disabled]="!editForm.dirty || !editForm.valid" form="editForm" type="submit" class="btn btn-primary btn-block">Save</button>
+      </div>
+      <div class="form-group col-sm-4">
+        <button class="btn btn-secondary btn-block" (click)="cancel()" type="button" >Cancel</button>
+      </div>
+    </div>
+  </form>
+  <div style="color: red;">
+    <b>{{ errorMessages }} </b>
+  </div>
+  
+</div>
+

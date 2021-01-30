@@ -1,0 +1,107 @@
+<div class="container" >
+  <div *ngIf="isLoading">
+    <mat-progress-bar 
+        mode="Indeterminate">
+    </mat-progress-bar>
+  </div>
+  <form [formGroup]="registerForm"  (ngSubmit)="register()">
+    <h2 class="text-center text-primary">Sign Up</h2>
+    <hr>
+
+
+    <div class="form-group">
+      <input type="text"
+      [ngClass]="{'is-invalid': registerForm.get('email').errors
+        && registerForm.get('email').touched}"
+      class="form-control"  
+      formControlName="email"  
+      placeholder="Email">
+      <div class="invalid-feedback">Please chose a email</div>
+    </div>
+
+    
+
+    <div class="form-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('firstName').errors && registerForm.get('firstName').touched}" class="form-control"
+        placeholder="First Name" formControlName="firstName">
+      <div class="invalid-feedback" *ngIf="registerForm.get('firstName').touched && registerForm.get('firstName').hasError('required')">First Name is required</div>
+    </div>
+
+    <div class="form-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('surname').errors && registerForm.get('surname').touched}" class="form-control"
+        placeholder="Surname" formControlName="surname">
+      <div class="invalid-feedback" *ngIf="registerForm.get('surname').touched && registerForm.get('surname').hasError('required')">Surname is required</div>
+    </div>
+    <div class="form-group">
+      <input [ngClass]="{'is-invalid': registerForm.get('businessName').errors && registerForm.get('businessName').touched}" class="form-control"
+        placeholder="Business Name" formControlName="businessName">
+      <div class="invalid-feedback" *ngIf="registerForm.get('businessName').touched && registerForm.get('businessName').hasError('required')">Business Name is required</div>
+    </div>
+    <div class="form-group">
+      <!-- <label for="country">Country *</label> -->
+      <select id="country"  formControlName="countryId" class="form-control" 
+        [ngClass]="{'is-invalid': registerForm.get('countryId').errors && registerForm.get('countryId').touched}" 
+      >
+        <option value = "" >-Select-</option>
+        <option *ngFor="let country of countries | async" value = "{{country.id}}">{{country.name}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="registerForm.get('countryId').touched && registerForm.get('countryId').hasError('required')">Country is required</div>
+    </div>
+      
+
+    <div class="form-group">
+      <input type="password" 
+      [ngClass]="{'is-invalid': registerForm.get('password').errors
+        && registerForm.get('password').touched}"
+      class="form-control"  
+      formControlName="password"  
+      placeholder="Password">
+      <div class="invalid-feedback"
+        *ngIf="registerForm.get('password').hasError('required')
+            && registerForm.get('password').touched">
+            Password is required
+      </div>
+      <div class="invalid-feedback"
+        *ngIf="registerForm.get('password').hasError('minlength')
+            && registerForm.get('password').touched">
+            Password must be atleast 4 characters
+      </div>
+      <div class="invalid-feedback"
+        *ngIf="registerForm.get('password').hasError('maxlength')
+            && registerForm.get('password').touched">
+            Password cannot exceed 8 characters
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password"
+      [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors
+      && registerForm.get('confirmPassword').touched
+      || registerForm.get('confirmPassword').touched
+      && registerForm.hasError('mismatch')}"
+      class="form-control"  
+      formControlName="confirmPassword"  
+        placeholder="Confirm Password">
+        <div class="invalid-feedback"
+          *ngIf="registerForm.get('confirmPassword').hasError('required')
+              && registerForm.get('confirmPassword').touched">
+              Password is required
+        </div>
+        <div class="invalid-feedback"
+          *ngIf="registerForm.hasError('mismatch')
+              && registerForm.get('confirmPassword').touched">
+              Password must match
+        </div>
+    </div>
+
+    <div class="form-group text-center">
+      <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Register</button>
+      <!-- &nbsp;<a routerLink='login'><i class="fa fa-sign-in"></i> Sign in instead</a> -->
+      &nbsp;<button type="button"  (click)="signIn()" class="btn btn-link"><i class="fa fa-sign-in"></i> Sign in instead</button>
+    </div>
+    
+  </form>
+  <div style="color: red;">
+    <b>{{ errorMessages }} </b>
+  </div>
+</div>

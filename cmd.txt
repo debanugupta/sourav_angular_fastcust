@@ -1,0 +1,8 @@
+dotnet ef migrations add EmployeeNullableDesignationID
+
+dotnet ef database update
+
+dotnet watch run  
+
+ng build --prod --base-href 
+/EmployeeApp-SPA/

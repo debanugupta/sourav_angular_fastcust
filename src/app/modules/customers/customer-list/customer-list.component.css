@@ -1,0 +1,42 @@
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+  .fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .mat-card-header {
+    justify-content: flex-end; /* for right*/
+    justify-content: flex-start; /* for left*/
+    justify-content: centre; /* for center*/
+  }
+  
+  .mat-button.mat-blue {
+    color: blue;
+  }
+  
+  .mat-raised-button.mat-blue,
+  .mat-flat-button.mat-blue {
+    background-color: blue;
+    color: white;
+  }
+  
+  .mat-mini-fab.mat-blue {
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  .mat-card {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-bottom: 10px !important;
+    border: none;
+    
+  }
+
+
+
+.example-card {
+    min-width: 100%;
+    margin: 10px;
+
+}
+
+  
